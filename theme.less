@@ -1,0 +1,189 @@
+/**
+ * Copyright (c) 2015 Otterpus, All rights reserved.
+ * Licensed under MIT
+ **/
+
+/*
+ * Flotsam 
+ * by Otterpus
+ */
+
+/* Variables to be used in multiple places. */
+@background: #647b91;
+@foreground: #333;
+@frothWhite: #e3e5d2;
+@murkyBlue: #264762;
+@overcastBlue: #7593ac;
+@dingyOrange: #d49660;
+@muckYellow: #afaa98;
+@sludgeGrey: #818181;
+@emberRed: #ce5350;
+@testPink: #ff6ede;
+
+//Editor Styling 
+.cm-meta        {color: @frothWhite;} // meta tag color
+.cm-atom        {color: @dingyOrange;} // property calue color
+.cm-qualifier   {color: @frothWhite;} // property color
+.cm-property    {color: @murkyBlue;} // property color
+.cm-tag         {color: @frothWhite;} // tag color
+.cm-comment     {color: @muckYellow;} // comment color
+.cm-bracket     {color: @frothWhite;} // bracket color
+.cm-attribute   {color: @muckYellow;} // attribute prop color
+.cm-string      {color: @dingyOrange;} // attribute value color
+.cm-keyword     {color: @dingyOrange;} // value color
+.cm-number      {color: @dingyOrange;} // value color
+.cm-def         {color: @dingyOrange;} // property color
+.cm-variable    {color: @frothWhite;} // variable color
+.cm-variable-2  {color: @frothWhite;} // value color
+.cm-error       {color: @emberRed;} // error color
+.cm-variable-3  {color: @dingyOrange;}
+.cm-string-2    {color: @dingyOrange;}
+.cm-hr          {color: @dingyOrange;}
+.cm-operator    {color: @murkyBlue;}
+.cm-plus        {color: @dingyOrange;}
+.cm-header      {color: @dingyOrange;}
+.cm-link        {color: @dingyOrange; text-decoration: none;}
+.cm-rangeinfo   {color: @dingyOrange;}
+.cm-builtin     {color: @dingyOrange;}
+.cm-quote       {color: @dingyOrange;}
+.cm-minus       {color: @dingyOrange;}
+
+/* Code Styling */
+
+.CodeMirror, .CodeMirror-scroll {
+    background-color: @background;
+    color: @foreground;
+}
+
+.CodeMirror-focused .CodeMirror-activeline-background {
+    background: @sludgeGrey;
+}
+
+.show-line-padding .CodeMirror-focused .CodeMirror-activeline-background {
+    box-shadow: inset 15px 0 0 0 #000;
+}
+
+.CodeMirror-focused .CodeMirror-activeline {
+    .CodeMirror-gutter-elt {
+        background: rgba(0, 0, 0, 0.2);
+        color: @frothWhite;
+    }
+    .inline-widget .CodeMirror-gutter-elt {
+        color: @sludgeGrey;    
+    }
+}
+
+
+/* Extra CSS */
+
+.CodeMirror-searching {
+    background-color: @murkyBlue;
+    &.searching-current-match {
+        background-color: @muckYellow;
+    }
+}
+
+
+.CodeMirror-cursor {
+    border-left: 1px solid @frothWhite !important;
+}
+
+.CodeMirror-gutters {
+    background-color: @background;
+    border-right: none;
+}
+
+.CodeMirror-linenumber {
+    color: @frothWhite;
+}
+
+.CodeMirror .CodeMirror-selected {
+    background: @overcastBlue;
+}
+.CodeMirror-focused .CodeMirror-selected {
+    background: @overcastBlue;
+}
+
+.CodeMirror-matchingbracket, .CodeMirror-matchingtag {
+    /* Ensure visibility against gray inline editor background */
+    background-color: @overcastBlue;
+    color: @foreground !important;
+}
+
+.CodeMirror-overwrite .CodeMirror-cursor {
+    border-left: none !important;
+    border-bottom: 1px solid @frothWhite;
+}
+
+/*
+    CodeMirror's use of descendant selectors for certain styling causes problems when editors are
+    nested because, for items in the inner editor, the left-hand clause in the selector will now
+    match either the actual containing CodeMirror instance *OR* the outer "host" CodeMirror instance.
+    TODO (issue #324): We'll still have problems if editors can be nested more than one level deep,
+    or if any other descendant-selector-driven CM styles can differ between inner & outer editors
+    (potential problem areas include line wrap and coloring theme: basically, anything in codemirror.css
+    that uses a descandant selector where the CSS class name to the left of the space is something
+    other than a vanilla .CodeMirror)
+ */
+.CodeMirror {
+    .CodeMirror {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-gutters {
+        background: transparent;
+        border-right: none;
+    }
+
+    .CodeMirror .CodeMirror-activeline-background {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-activeline .CodeMirror-gutter-elt {
+        background: transparent;
+        color: @sludgeGrey;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline-background {
+        background: @sludgeGrey;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline {
+        .CodeMirror-gutter-elt {
+            background: @sludgeGrey;
+            color: @frothWhite;
+        }
+    }
+}
+
+/* Fold Gutter */
+
+.CodeMirror-foldgutter-open:after {
+    color: @frothWhite;
+}
+.CodeMirror-foldgutter-folded:after {
+    color: @sludgeGrey;
+}
+
+.CodeMirror.over-gutter, .CodeMirror-activeline {
+    .CodeMirror-foldgutter-open:after {
+        color: @sludgeGrey;
+    }
+}
+
+.CodeMirror-foldmarker {
+    border-color: @murkyBlue;
+    color: @frothWhite;
+    background-color: @sludgeGrey;
+}
+
+/* Non-editor styling */
+
+.image-view,
+.not-editor {
+    background-color: @background;
+}
+
+.view-pane .image-view {
+    color: @foreground;
+}
